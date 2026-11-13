@@ -48,12 +48,12 @@
 					<% products.forEach(product => { %>
 						<div class="col-6 col-lg-3">
 							<article class="product-card h-100 overflow-hidden">
-								<a href="/product/<%= product.id %>" aria-label="ดูสินค้า <%= product.name %>"><img class="product-image w-100" src="<%= product.image %>" alt="<%= product.alt %>"></a>
+								<a href="/product" aria-label="ดูสินค้า <%= product.name %>"><img class="product-image w-100" src="<%= product.image %>" alt="<%= product.alt %>"></a>
 								<div class="p-3">
 									<span class="badge text-bg-warning mb-2"><%= product.label %></span>
-									<h3 class="h6"><a class="text-decoration-none text-dark" href="/product/<%= product.id %>"><%= product.name %></a></h3>
+									<h3 class="h6"><a class="text-decoration-none text-dark" href="/product"><%= product.name %></a></h3>
 									<div class="price"><%= product.price %><% if (product.oldPrice) { %> <span class="old-price ms-1"><%= product.oldPrice %></span><% } %></div>
-									<a href="/product/<%= product.id %>" class="btn btn-outline-dark btn-sm rounded-pill mt-3 w-100">ดูสินค้า</a>
+									<a href="/product" class="btn btn-outline-dark btn-sm rounded-pill mt-3 w-100">ดูสินค้า</a>
 								</div>
 							</article>
 						</div>
@@ -87,7 +87,6 @@
 								<th style="padding: 12px 10px;">ชื่อสินค้า</th>
 								<th style="padding: 12px 10px;">ราคา (บาท)</th>
 								<th style="padding: 12px 10px;">จำนวนคงเหลือ</th>
-								<th style="padding: 12px 10px; text-align: center;">ดูสินค้า</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -96,10 +95,8 @@
 									<tr>
 										<td style="padding: 12px 10px;"><%= index + 1 %></td>
 										<td style="padding: 12px 10px;"><span class="badge text-bg-light border text-secondary"><%= item.id %></span></td>
-										<td style="padding: 12px 10px;">
-											<a href="/product/<%= item.id %>" class="text-decoration-none text-dark fw-medium">
-												<%= item.name %>
-											</a>
+										<td style="padding: 12px 10px; font-weight: 500;">
+											<%= item.name %>
 										</td>
 										<td style="padding: 12px 10px; font-weight: 600; color: var(--amber-dark);">
 											฿<%= (typeof item.price === 'number') ? item.price.toLocaleString('th-TH') : item.price %>
@@ -110,9 +107,6 @@
 											<% } else { %>
 												<span style="color: red; font-weight: 500;">Out of Stock</span>
 											<% } %>
-										</td>
-										<td style="padding: 12px 10px; text-align: center;">
-											<a href="/product/<%= item.id %>" class="btn btn-sm btn-amber rounded-pill px-3">ดูสินค้า</a>
 										</td>
 									</tr>
 								<% }); %>

@@ -175,43 +175,21 @@ const renderProducts = (req, res) => {
     });
 };
 
-const renderProductDetail = (req, res) => {
-    const targetId = req.params.id;
-    let found = products.find(item => item.id === targetId);
-
-    if (!found) {
-        const netItem = myProducts.find(item => item.id === targetId);
-        if (netItem) {
-            found = {
-                ...netItem,
-                price: typeof netItem.price === 'number' ? `฿${netItem.price.toLocaleString('th-TH')}` : netItem.price
-            };
-        }
-    }
-
-    if (!found) {
-        return res.status(404).render('product-detail', {
-            title: 'ไม่พบสินค้า',
-            activePage: 'product',
-            product: null
-        });
-    }
-
-    res.render('product-detail', {
-        title: found.name,
-        activePage: 'product',
-        product: found
-    });
-};
-
 // Route สำหรับหน้าแรก
 app.get(['/', '/index.html'], renderHome);
 
 // Route สำหรับหน้าสินค้าแนะนำ
 app.get(['/product', '/product.html'], renderProducts);
 
-// Route สำหรับดูรายละเอียดสินค้า (กดดูสินค้าได้ทั้งสินค้าแนะนำและอุปกรณ์เครือข่าย)
-app.get(['/product/:id', '/products/:id', '/showProduct/:id'], renderProductDetail);
+// หากมีการเข้าถึง /product/:id ให้เปลี่ยนเส้นทางไปยังหน้าสินค้าแนะนำ
+app.get(['/product/:id', '/products/:id'], (req, res) => {
+    res.redirect('/product');
+});
+
+// หากมีการเข้าถึง /showProduct/:id ให้เปลี่ยนเส้นทางไปยังหน้ารายการอุปกรณ์เครือข่าย
+app.get('/showProduct/:id', (req, res) => {
+    res.redirect('/showProduct');
+});
 
 ////////////////////////  app.js  pagination ///////////////
 app.get(['/products', '/products.html', '/showProduct', '/showProduct.html'], (req, res) => {

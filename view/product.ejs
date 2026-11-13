@@ -14,18 +14,18 @@
 			<% products.forEach(product => { %>
 				<div class="col-6 col-lg-3">
 					<article class="product-card h-100 overflow-hidden d-flex flex-column">
-						<a href="/product/<%= product.id %>" aria-label="ดูสินค้า <%= product.name %>">
+						<a href="/#contact" aria-label="สอบถามสินค้า <%= product.name %>">
 							<img class="product-image w-100" src="<%= product.image %>" alt="<%= product.alt %>">
 						</a>
 						<div class="p-3 d-flex flex-column flex-grow-1">
 							<span class="badge text-bg-warning mb-2 align-self-start"><%= product.label %></span>
 							<h2 class="h6 flex-grow-1">
-								<a class="text-decoration-none text-dark" href="/product/<%= product.id %>"><%= product.name %></a>
+								<a class="text-decoration-none text-dark" href="/#contact"><%= product.name %></a>
 							</h2>
 							<div class="price my-2">
 								<%= product.price %><% if (product.oldPrice) { %> <span class="old-price ms-1"><%= product.oldPrice %></span><% } %>
 							</div>
-							<a href="/product/<%= product.id %>" class="btn btn-outline-dark btn-sm rounded-pill mt-auto w-100">ดูสินค้า</a>
+							<a href="/#contact" class="btn btn-amber btn-sm rounded-pill mt-auto w-100">สั่งซื้อ / สอบถาม</a>
 						</div>
 					</article>
 				</div>

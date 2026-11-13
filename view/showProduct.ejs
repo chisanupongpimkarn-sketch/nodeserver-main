@@ -21,7 +21,6 @@
                         <th style="padding: 12px 10px;">ชื่อสินค้า</th>
                         <th style="padding: 12px 10px;">ราคา (บาท)</th>
                         <th style="padding: 12px 10px;">จำนวนคงเหลือ</th>
-                        <th style="padding: 12px 10px; text-align: center;">ดูสินค้า</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,10 +29,8 @@
                         <tr>
                             <td style="padding: 12px 10px;"><%= (typeof startIndex !== 'undefined' ? startIndex : 0) + index + 1 %></td>
                             <td style="padding: 12px 10px;"><span class="badge text-bg-light border text-secondary"><%= product.id %></span></td>
-                            <td style="padding: 12px 10px;">
-                                <a href="/product/<%= product.id %>" class="text-decoration-none text-dark fw-medium">
-                                    <%= product.name %>
-                                </a>
+                            <td style="padding: 12px 10px; font-weight: 500;">
+                                <%= product.name %>
                             </td>
                            
                             <!-- จัดฟอร์แมตตัวเลขให้มีคอมม่า -->
@@ -48,10 +45,6 @@
                                 <% } else { %>
                                     <span style="color: red; font-weight: 500;">Out of Stock</span>
                                 <% } %>
-                            </td>
-
-                            <td style="padding: 12px 10px; text-align: center;">
-                                <a href="/product/<%= product.id %>" class="btn btn-sm btn-amber rounded-pill px-3">ดูสินค้า</a>
                             </td>
                         </tr>
                     <% }); %>
