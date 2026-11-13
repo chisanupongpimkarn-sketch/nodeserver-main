@@ -1,0 +1,87 @@
+<main class="py-5">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
+            <div>
+                <p class="section-label mb-1">คลังอุปกรณ์เครือข่าย</p>
+                <h1 class="h2 fw-semibold mb-0">รายการอุปกรณ์เครือข่ายทั้งหมด</h1>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <span class="badge text-bg-warning rounded-pill px-3 py-2 fs-6">ทั้งหมด <%= typeof totalItems !== 'undefined' ? totalItems : products.length %> รายการ</span>
+                <a class="btn btn-outline-dark rounded-pill px-3" href="/product">ดูสินค้าแนะนำ</a>
+                <a class="btn btn-amber rounded-pill px-3" href="/">กลับหน้าแรก <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <div class="table-responsive bg-white rounded-4 shadow-sm border p-3">
+            <table class="table table-hover align-middle mb-0" style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead style="background-color: #f8f9fa;">
+                    <tr>
+                        <th style="padding: 12px 10px;">ลำดับ</th>
+                        <th style="padding: 12px 10px;">รหัสสินค้า</th>
+                        <th style="padding: 12px 10px;">ชื่อสินค้า</th>
+                        <th style="padding: 12px 10px;">ราคา (บาท)</th>
+                        <th style="padding: 12px 10px;">จำนวนคงเหลือ</th>
+                        <th style="padding: 12px 10px; text-align: center;">ดูสินค้า</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- เริ่มต้นการวนลูป Array -->
+                    <% products.forEach(function(product, index) { %>
+                        <tr>
+                            <td style="padding: 12px 10px;"><%= (typeof startIndex !== 'undefined' ? startIndex : 0) + index + 1 %></td>
+                            <td style="padding: 12px 10px;"><span class="badge text-bg-light border text-secondary"><%= product.id %></span></td>
+                            <td style="padding: 12px 10px;">
+                                <a href="/product/<%= product.id %>" class="text-decoration-none text-dark fw-medium">
+                                    <%= product.name %>
+                                </a>
+                            </td>
+                           
+                            <!-- จัดฟอร์แมตตัวเลขให้มีคอมม่า -->
+                            <td style="padding: 12px 10px; font-weight: 600; color: var(--amber-dark);">
+                                ฿<%= product.price.toLocaleString('th-TH') %>
+                            </td>
+                           
+                            <!-- เช็คเงื่อนไขจำนวนสินค้าเพื่อเปลี่ยนสีข้อความ -->
+                            <td style="padding: 12px 10px;">
+                                <% if (product.quantity > 0) { %>
+                                    <span style="color: green; font-weight: 500;">✓ <%= product.quantity %> ชิ้น</span>
+                                <% } else { %>
+                                    <span style="color: red; font-weight: 500;">Out of Stock</span>
+                                <% } %>
+                            </td>
+
+                            <td style="padding: 12px 10px; text-align: center;">
+                                <a href="/product/<%= product.id %>" class="btn btn-sm btn-amber rounded-pill px-3">ดูสินค้า</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                    <!-- สิ้นสุดการวนลูป -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ส่วนแสดงผล Pagination -->
+        <div style="margin-top: 20px; text-align: center; font-size: 16px;">
+            <!-- ปุ่ม ก่อนหน้า (จะซ่อนเมื่ออยู่หน้า 1) -->
+            <% if (typeof currentPage !== 'undefined' && currentPage > 1) { %>
+                <a href="/showProduct?page=<%= currentPage - 1 %>" style="margin-right: 10px; text-decoration: none;">&laquo; ก่อนหน้า</a>
+            <% } %>
+
+            <!-- ลูปสร้างตัวเลขหน้า -->
+            <% if (typeof totalPages !== 'undefined') { %>
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                    <% if (typeof currentPage !== 'undefined' && currentPage === i) { %>
+                        <a href="/showProduct?page=<%= i %>" style="margin: 0 5px; padding: 5px 10px; text-decoration: none; border: 1px solid #ccc; border-radius: 4px; background-color: #007bff; color: white;"><%= i %></a>
+                    <% } else { %>
+                        <a href="/showProduct?page=<%= i %>" style="margin: 0 5px; padding: 5px 10px; text-decoration: none; border: 1px solid #ccc; border-radius: 4px; background-color: #f8f9fa; color: black;"><%= i %></a>
+                    <% } %>
+                <% } %>
+            <% } %>
+
+            <!-- ปุ่ม ถัดไป (จะซ่อนเมื่ออยู่หน้าสุดท้าย) -->
+            <% if (typeof currentPage !== 'undefined' && typeof totalPages !== 'undefined' && currentPage < totalPages) { %>
+                <a href="/showProduct?page=<%= currentPage + 1 %>" style="margin-left: 10px; text-decoration: none;">ถัดไป &raquo;</a>
+            <% } %>
+        </div>
+    </div>
+</main>

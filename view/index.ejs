@@ -1,0 +1,133 @@
+<main>
+		<section class="hero" id="home">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-6 hero-copy">
+						<p class="hero-kicker text-uppercase mb-3">อัปเกรดประสบการณ์ของคุณ</p>
+						<h1>อุปกรณ์คอม<br>ที่ใช่ในสไตล์คุณ</h1>
+						<p class="text-white-50 fs-5 mt-3 mb-4">ครบทั้งทำงาน เล่นเกม และสร้างสรรค์ พร้อมสินค้าคุณภาพและบริการที่ใส่ใจ</p>
+						<a href="/product" class="btn btn-amber btn-lg rounded-pill px-4">ช้อปสินค้าเลย <span aria-hidden="true">→</span></a>
+					</div>
+					<div class="col-md-6 hero-art">
+						<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=85" alt="ชุดอุปกรณ์คอมพิวเตอร์และเกมมิ่งเกียร์">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="py-5" id="categories">
+			<div class="container">
+				<div class="d-flex justify-content-between align-items-end mb-4">
+					<div><p class="section-label mb-1">เลือกตามที่คุณต้องการ</p><h2 class="h3 fw-semibold mb-0">หมวดหมู่สินค้า</h2></div>
+					<div class="d-flex gap-2">
+						<a class="text-decoration-none text-dark" href="/product">ดูสินค้าแนะนำ <span class="brand-mark">→</span></a>
+						<span class="text-muted">|</span>
+						<a class="text-decoration-none text-dark" href="/showProduct">ดูอุปกรณ์เครือข่าย <span class="brand-mark">→</span></a>
+					</div>
+				</div>
+				<div class="row g-3">
+					<div class="col-6 col-lg-3"><a class="category-card d-flex align-items-center gap-3 p-3 h-100 text-decoration-none text-dark" href="/product"><span class="category-icon">▣</span><span><strong>คอมพิวเตอร์</strong><small class="d-block text-secondary">PC & Notebook</small></span></a></div>
+					<div class="col-6 col-lg-3"><a class="category-card d-flex align-items-center gap-3 p-3 h-100 text-decoration-none text-dark" href="/product"><span class="category-icon">⌨</span><span><strong>เกมมิ่งเกียร์</strong><small class="d-block text-secondary">คีย์บอร์ด เมาส์</small></span></a></div>
+					<div class="col-6 col-lg-3"><a class="category-card d-flex align-items-center gap-3 p-3 h-100 text-decoration-none text-dark" href="/product"><span class="category-icon">▤</span><span><strong>จอภาพ</strong><small class="d-block text-secondary">Monitor & Display</small></span></a></div>
+					<div class="col-6 col-lg-3"><a class="category-card d-flex align-items-center gap-3 p-3 h-100 text-decoration-none text-dark" href="/showProduct"><span class="category-icon">⚙</span><span><strong>อุปกรณ์เครือข่าย</strong><small class="d-block text-secondary">Router, Switch & Rack</small></span></a></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="pb-5" id="products">
+			<div class="container">
+				<div class="d-flex justify-content-between align-items-end mb-4">
+					<div><p class="section-label mb-1">คัดมาเพื่อคุณ</p><h2 class="h3 fw-semibold mb-0">สินค้าแนะนำ</h2></div>
+					<div class="d-flex gap-2">
+						<a class="text-decoration-none text-dark" href="/product">ดูทั้งหมด <span class="brand-mark">→</span></a>
+						<span class="text-muted">|</span>
+						<a class="text-decoration-none text-dark" href="/showProduct">คลังอุปกรณ์เครือข่าย <span class="brand-mark">→</span></a>
+					</div>
+				</div>
+				<div class="row g-4">
+					<% products.forEach(product => { %>
+						<div class="col-6 col-lg-3">
+							<article class="product-card h-100 overflow-hidden">
+								<a href="/product/<%= product.id %>" aria-label="ดูสินค้า <%= product.name %>"><img class="product-image w-100" src="<%= product.image %>" alt="<%= product.alt %>"></a>
+								<div class="p-3">
+									<span class="badge text-bg-warning mb-2"><%= product.label %></span>
+									<h3 class="h6"><a class="text-decoration-none text-dark" href="/product/<%= product.id %>"><%= product.name %></a></h3>
+									<div class="price"><%= product.price %><% if (product.oldPrice) { %> <span class="old-price ms-1"><%= product.oldPrice %></span><% } %></div>
+									<a href="/product/<%= product.id %>" class="btn btn-outline-dark btn-sm rounded-pill mt-3 w-100">ดูสินค้า</a>
+								</div>
+							</article>
+						</div>
+					<% }); %>
+				</div>
+			</div>
+		</section>
+
+		<section class="pb-5">
+			<div class="container"><div class="deal-banner p-4 p-md-5 d-md-flex justify-content-between align-items-center gap-3">
+				<div><p class="section-label mb-1">โปรโมชันประจำเดือน</p><h2 class="h3 fw-semibold">ช้อปวันนี้ รับส่วนลดสูงสุด 20%</h2><p class="mb-md-0 text-secondary">พร้อมผ่อนชำระ 0%* สำหรับสินค้าที่ร่วมรายการ</p></div>
+				<a href="/product" class="btn btn-amber rounded-pill px-4 mt-3 mt-md-0">ดูโปรโมชัน</a>
+			</div></div>
+		</section>
+
+		<section class="pb-5" id="showProductSection">
+			<div class="container">
+				<div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
+					<div>
+						<p class="section-label mb-1">คลังอุปกรณ์เครือข่ายทั้งหมด</p>
+						<h2 class="h3 fw-semibold mb-0">รายการสินค้าอุปกรณ์เครือข่าย (Show Product)</h2>
+					</div>
+					<a class="btn btn-outline-dark rounded-pill px-4" href="/showProduct">ดูหน้าตารางเต็มรูปแบบ <span class="brand-mark">→</span></a>
+				</div>
+				<div class="table-responsive bg-white rounded-4 shadow-sm border p-3">
+					<table class="table table-hover align-middle mb-0" style="width: 100%; border-collapse: collapse; text-align: left;">
+						<thead style="background-color: #f8f9fa;">
+							<tr>
+								<th style="padding: 12px 10px;">ลำดับ</th>
+								<th style="padding: 12px 10px;">รหัสสินค้า</th>
+								<th style="padding: 12px 10px;">ชื่อสินค้า</th>
+								<th style="padding: 12px 10px;">ราคา (บาท)</th>
+								<th style="padding: 12px 10px;">จำนวนคงเหลือ</th>
+								<th style="padding: 12px 10px; text-align: center;">ดูสินค้า</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% if (typeof networkProducts !== 'undefined' && networkProducts.length > 0) { %>
+								<% networkProducts.forEach(function(item, index) { %>
+									<tr>
+										<td style="padding: 12px 10px;"><%= index + 1 %></td>
+										<td style="padding: 12px 10px;"><span class="badge text-bg-light border text-secondary"><%= item.id %></span></td>
+										<td style="padding: 12px 10px;">
+											<a href="/product/<%= item.id %>" class="text-decoration-none text-dark fw-medium">
+												<%= item.name %>
+											</a>
+										</td>
+										<td style="padding: 12px 10px; font-weight: 600; color: var(--amber-dark);">
+											฿<%= (typeof item.price === 'number') ? item.price.toLocaleString('th-TH') : item.price %>
+										</td>
+										<td style="padding: 12px 10px;">
+											<% if (item.quantity > 0) { %>
+												<span style="color: green; font-weight: 500;">✓ <%= item.quantity %> ชิ้น</span>
+											<% } else { %>
+												<span style="color: red; font-weight: 500;">Out of Stock</span>
+											<% } %>
+										</td>
+										<td style="padding: 12px 10px; text-align: center;">
+											<a href="/product/<%= item.id %>" class="btn btn-sm btn-amber rounded-pill px-3">ดูสินค้า</a>
+										</td>
+									</tr>
+								<% }); %>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+		<section class="py-4 border-top">
+			<div class="container"><div class="row g-3 text-center">
+				<div class="col-4"><div class="feature-icon">✓</div><strong class="d-block">สินค้ารับประกัน</strong><small class="text-secondary">มั่นใจทุกการใช้งาน</small></div>
+				<div class="col-4"><div class="feature-icon">♧</div><strong class="d-block">จัดส่งทั่วประเทศ</strong><small class="text-secondary">แพ็กอย่างปลอดภัย</small></div>
+				<div class="col-4"><div class="feature-icon">♡</div><strong class="d-block">บริการหลังการขาย</strong><small class="text-secondary">ทีมงานพร้อมดูแล</small></div>
+			</div></div>
+		</section>
+	</main>
